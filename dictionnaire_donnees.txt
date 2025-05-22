@@ -1,0 +1,88 @@
+🔹 model User
+Ce modèle représente les utilisateurs de l'application.
+
+Colonne	Rôle
+id	Identifiant unique de l’utilisateur (UUID).
+email	Email unique de l’utilisateur (identifiant de connexion).
+password	Mot de passe (généralement hashé).
+nom	Nom de l’utilisateur.
+prenom	Prénom de l’utilisateur.
+role	Rôle de l’utilisateur (ETUDIANT, FORMATEUR, ADMIN).
+createdAt	Date de création du compte.
+updatedAt	Date de dernière mise à jour.
+courses	Cours créés par l’utilisateur s’il est formateur.
+enrollments	Inscriptions de l’utilisateur aux cours.
+reviews	Avis laissés par l’utilisateur sur des cours.
+
+🔹 model Course
+Un cours publié sur la plateforme.
+
+Colonne	Rôle
+id	Identifiant unique du cours.
+title	Titre du cours.
+description	Description du contenu du cours.
+image	URL de l’image de couverture (facultatif).
+price	Prix du cours.
+published	Statut de publication (publié ou non).
+creator	Référence au formateur qui a créé le cours.
+creatorId	ID du formateur.
+category	Catégorie du cours.
+categoryId	ID de la catégorie.
+lessons	Liste des leçons appartenant à ce cours.
+enrollments	Inscriptions des utilisateurs à ce cours.
+reviews	Avis des utilisateurs sur ce cours.
+createdAt	Date de création du cours.
+updatedAt	Date de dernière modification.
+
+🔹 model Lesson
+Une leçon dans un cours.
+
+Colonne	Rôle
+id	Identifiant unique de la leçon.
+title	Titre de la leçon.
+videoUrl	Lien vers la vidéo de la leçon.
+course	Référence au cours auquel la leçon appartient.
+courseId	ID du cours.
+order	Ordre d’apparition dans le cours (ex: 1, 2, 3…).
+
+🔹 model Category
+Catégories pour organiser les cours (ex: "Programmation", "Musique").
+
+Colonne	Rôle
+id	Identifiant unique de la catégorie.
+name	Nom de la catégorie.
+slug	Slug unique (URL-friendly).
+courses	Liste des cours dans cette catégorie.
+
+🔹 model Enrollment
+Inscription d’un utilisateur à un cours.
+
+Colonne	Rôle
+id	Identifiant unique de l’inscription.
+user	Utilisateur inscrit.
+userId	ID de l’utilisateur.
+course	Cours auquel l’utilisateur est inscrit.
+courseId	ID du cours.
+createdAt	Date d’inscription.
+
+🔹 model Review
+Avis laissé par un utilisateur sur un cours.
+
+Colonne	Rôle
+id	Identifiant unique de l’avis.
+rating	Note (souvent entre 1 et 5).
+comment	Commentaire textuel.
+user	Utilisateur qui a laissé l’avis.
+userId	ID de l’utilisateur.
+course	Cours concerné.
+courseId	ID du cours.
+createdAt	Date de publication de l’avis.
+
+🔹 enum Role
+Énumération des rôles possibles pour les utilisateurs :
+
+ETUDIANT : utilisateur qui suit des cours.
+
+FORMATEUR : utilisateur qui crée des cours.
+
+ADMIN : utilisateur qui a des droits étendus.
